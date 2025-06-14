@@ -1,0 +1,85 @@
+<form id="lore-assistant-settings-form">
+    <div class="settings-header">
+        <h2>AI Lore Assistant Settings</h2>
+        <p>Configure your OpenAI API settings for the lore assistant.</p>
+    </div>
+
+    <div class="form-group">
+        <label for="apiKey">OpenAI API Key <span class="required">*</span></label>
+        <input type="password" id="apiKey" name="apiKey" value="{{apiKey}}" placeholder="sk-..." required>
+        <p class="hint">Get your API key from <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI Platform</a></p>
+    </div>
+
+    <div class="form-group">
+        <label for="model">AI Model</label>
+        <select id="model" name="model">
+            {{#each models}}
+            <option value="{{@key}}" {{#if (eq @key ../model)}}selected{{/if}}>{{this}}</option>
+            {{/each}}
+        </select>
+        <p class="hint">GPT-3.5 Turbo is faster and cheaper, GPT-4 models are more capable but cost more.</p>
+    </div>
+
+    <div class="form-group">
+        <label for="maxTokens">Max Tokens: <span id="maxTokensValue">{{maxTokens}}</span></label>
+        <input type="range" id="maxTokens" name="maxTokens" min="100" max="4000" step="100" value="{{maxTokens}}" 
+               oninput="document.getElementById('maxTokensValue').textContent = this.value">
+        <p class="hint">Controls response length. Higher values allow longer responses but cost more.</p>
+    </div>
+
+    <div class="form-group">
+        <label for="temperature">Creativity (Temperature): <span id="temperatureValue">{{temperature}}</span></label>
+        <input type="range" id="temperature" name="temperature" min="0" max="2" step="0.1" value="{{temperature}}"
+               oninput="document.getElementById('temperatureValue').textContent = this.value">
+        <p class="hint">Lower values (0.2-0.5) for focused responses, higher values (0.8-1.2) for creative responses.</p>
+    </div>
+
+    <div class="form-group">
+        <label for="responseFormat">Response Format</label>
+        <select id="responseFormat" name="responseFormat">
+            {{#each formats}}
+            <option value="{{@key}}" {{#if (eq @key ../responseFormat)}}selected{{/if}}>{{this}}</option>
+            {{/each}}
+        </select>
+        <p class="hint">How responses should be formatted in the interface.</p>
+    </div>
+
+    <div class="form-group">
+        <label>
+            <input type="checkbox" id="autoSave" name="autoSave" {{#if autoSave}}checked{{/if}}>
+            Auto-save interesting responses as journal entries
+        </label>
+        <p class="hint">Automatically create journal entries for generated content.</p>
+    </div>
+
+    <div class="form-actions">
+        <button type="button" id="test-connection" class="btn btn-secondary">
+            <i class="fas fa-plug"></i> Test Connection
+        </button>
+        <button type="button" id="reset-settings" class="btn btn-warning">
+            <i class="fas fa-undo"></i> Reset to Defaults
+        </button>
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i> Save Settings
+        </button>
+    </div>
+
+    <div class="settings-footer">
+        <h3>Usage Tips</h3>
+        <ul>
+            <li>Use the <code>/lore</code> chat command followed by your query for quick access</li>
+            <li>Click the book icon on actor and item sheets to generate lore for them</li>
+            <li>Use specific prompts for better results (e.g., "Create a dwarven blacksmith named Thorin with a mysterious past")</li>
+            <li>Responses consider your world's existing content for consistency</li>
+        </ul>
+        
+        <h3>Cost Information</h3>
+        <p>This module uses OpenAI's API, which charges based on usage. Approximate costs per 1000 tokens:</p>
+        <ul>
+            <li><strong>GPT-3.5 Turbo:</strong> $0.001-0.002</li>
+            <li><strong>GPT-4:</strong> $0.03-0.06</li>
+            <li><strong>GPT-4 Turbo:</strong> $0.01-0.03</li>
+        </ul>
+        <p>A typical response uses 200-800 tokens. Monitor your usage on the OpenAI platform.</p>
+    </div>
+</form>

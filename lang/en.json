@@ -1,0 +1,73 @@
+{
+    "LOREASSISTANT": {
+        "Title": "AI Lore Assistant",
+        "Description": "An intelligent lore assistant for world-building and storytelling",
+        "ButtonTitle": "AI Lore Assistant",
+        "Settings": {
+            "Title": "AI Lore Assistant Settings",
+            "ApiKey": {
+                "Name": "OpenAI API Key",
+                "Hint": "Your OpenAI API key from https://platform.openai.com/api-keys"
+            },
+            "Model": {
+                "Name": "AI Model",
+                "Hint": "The OpenAI model to use for generating content"
+            },
+            "MaxTokens": {
+                "Name": "Max Tokens",
+                "Hint": "Maximum number of tokens in the response (affects length and cost)"
+            },
+            "Temperature": {
+                "Name": "Creativity (Temperature)",
+                "Hint": "Controls randomness. Lower values are more focused, higher values are more creative"
+            },
+            "AutoSave": {
+                "Name": "Auto-save Responses",
+                "Hint": "Automatically save interesting responses as journal entries"
+            },
+            "ResponseFormat": {
+                "Name": "Response Format",
+                "Hint": "Preferred format for AI responses"
+            }
+        },
+        "UI": {
+            "Generate": "Generate Lore",
+            "Generating": "Generating...",
+            "Clear": "Clear History",
+            "Export": "Export",
+            "Settings": "Settings",
+            "History": "History",
+            "Generator": "Generator",
+            "TestConnection": "Test Connection",
+            "ResetSettings": "Reset to Defaults",
+            "SaveSettings": "Save Settings",
+            "CopyToClipboard": "Copy to Clipboard",
+            "CreateJournalEntry": "Create Journal Entry",
+            "QuickActions": "Quick Actions"
+        },
+        "QuickActions": {
+            "RandomNPC": "Random NPC",
+            "Tavern": "Tavern",
+            "QuestHook": "Quest Hook",
+            "Location": "Location",
+            "Organization": "Organization",
+            "Mystery": "Mystery"
+        },
+        "Messages": {
+            "ConnectionSuccess": "✅ Connection successful!",
+            "ConnectionFailed": "❌ Connection failed. Please check your API key and settings.",
+            "SettingsSaved": "Settings saved successfully!",
+            "ConversationExported": "Conversation exported successfully!",
+            "JournalCreated": "Created journal entry: {name}",
+            "TextCopied": "Response copied to clipboard!",
+            "NoApiKey": "Please configure your API key in the module settings first.",
+            "GenerationFailed": "Failed to generate lore. Please check your API configuration.",
+            "NoHistory": "No conversation history yet. Start generating some lore!"
+        },
+        "Errors": {
+            "ApiKeyRequired": "API key not configured",
+            "InvalidResponse": "Invalid API response format",
+            "RequestFailed": "API request failed"
+        }
+    }
+}

@@ -1,0 +1,144 @@
+<div class="lore-assistant-app">
+    <nav class="tabs" data-group="lore-assistant-tabs">
+        <a class="item" data-tab="generator">
+            <i class="fas fa-magic"></i> Generator
+        </a>
+        <a class="item" data-tab="history">
+            <i class="fas fa-history"></i> History
+        </a>
+        <a class="item" data-tab="settings">
+            <i class="fas fa-cog"></i> Settings
+        </a>
+    </nav>
+
+    <div class="tab-content">
+        <!-- Generator Tab -->
+        <div class="tab" data-tab="generator">
+            {{#unless hasApiKey}}
+            <div class="api-key-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Please configure your OpenAI API key in the settings tab to use the AI Lore Assistant.</p>
+                <button type="button" id="open-settings" class="btn btn-primary">Open Settings</button>
+            </div>
+            {{/unless}}
+
+            <div class="query-section">
+                <h3>What would you like to create?</h3>
+                
+                <div class="quick-actions">
+                    <h4>Quick Actions:</h4>
+                    <div class="action-buttons">
+                        <button type="button" class="quick-action btn btn-sm" data-action="random-npc">
+                            <i class="fas fa-user"></i> Random NPC
+                        </button>
+                        <button type="button" class="quick-action btn btn-sm" data-action="tavern">
+                            <i class="fas fa-beer"></i> Tavern
+                        </button>
+                        <button type="button" class="quick-action btn btn-sm" data-action="quest-hook">
+                            <i class="fas fa-scroll"></i> Quest Hook
+                        </button>
+                        <button type="button" class="quick-action btn btn-sm" data-action="location">
+                            <i class="fas fa-map-marker-alt"></i> Location
+                        </button>
+                        <button type="button" class="quick-action btn btn-sm" data-action="organization">
+                            <i class="fas fa-users"></i> Organization
+                        </button>
+                        <button type="button" class="quick-action btn btn-sm" data-action="mystery">
+                            <i class="fas fa-search"></i> Mystery
+                        </button>
+                    </div>
+                </div>
+
+                <form id="lore-query-form">
+                    <div class="form-group">
+                        <label for="lore-query">Describe what you want to create:</label>
+                        <textarea id="lore-query" name="query" rows="4" placeholder="e.g., 'Create a mysterious merchant who sells magical items' or 'Describe a haunted forest with ancient ruins'">{{currentQuery}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="generate-lore" class="btn btn-primary" {{#if isGenerating}}disabled{{/if}}>
+                            {{#if isGenerating}}
+                                <i class="fas fa-spinner fa-spin"></i> Generating...
+                            {{else}}
+                                <i class="fas fa-magic"></i> Generate Lore
+                            {{/if}}
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            {{#if conversationHistory}}
+            <div class="current-conversation">
+                <h3>Current Session</h3>
+                {{#each conversationHistory}}
+                <div class="conversation-entry" data-entry-id="{{id}}">
+                    <div class="query">
+                        <strong>Query:</strong> {{query}}
+                    </div>
+                    <div class="response">
+                        <div class="response-content">{{response}}</div>
+                        <div class="response-actions">
+                            <button type="button" class="btn btn-sm copy-response" data-entry-id="{{id}}" title="Copy to Clipboard">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm insert-journal" data-entry-id="{{id}}" title="Create Journal Entry">
+                                <i class="fas fa-book"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            {{/if}}
+        </div>
+
+        <!-- History Tab -->
+        <div class="tab" data-tab="history">
+            <div class="history-controls">
+                <button type="button" id="clear-conversation" class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash"></i> Clear History
+                </button>
+                <button type="button" id="export-conversation" class="btn btn-primary btn-sm">
+                    <i class="fas fa-download"></i> Export
+                </button>
+            </div>
+
+            {{#if conversationHistory}}
+            <div class="conversation-history">
+                {{#each conversationHistory}}
+                <div class="history-entry" data-entry-id="{{id}}">
+                    <div class="entry-header">
+                        <span class="timestamp">{{timestamp}}</span>
+                        <div class="entry-actions">
+                            <button type="button" class="btn btn-sm copy-response" data-entry-id="{{id}}">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm insert-journal" data-entry-id="{{id}}">
+                                <i class="fas fa-book"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="entry-query">{{query}}</div>
+                    <div class="entry-response">{{response}}</div>
+                </div>
+                {{/each}}
+            </div>
+            {{else}}
+            <div class="no-history">
+                <p>No conversation history yet. Start generating some lore!</p>
+            </div>
+            {{/if}}
+        </div>
+
+        <!-- Settings Tab -->
+        <div class="tab" data-tab="settings">
+            <div class="settings-info">
+                <p>Configure your AI Lore Assistant settings. You'll need an OpenAI API key to use this module.</p>
+                <p><strong>World:</strong> {{worldName}}</p>
+            </div>
+            
+            <button type="button" id="open-settings" class="btn btn-primary">
+                <i class="fas fa-cog"></i> Open Settings
+            </button>
+        </div>
+    </div>
+</div>

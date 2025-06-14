@@ -1,0 +1,36 @@
+{
+    "name": "foundry-vtt-lore-assistant",
+    "version": "0.1.0",
+    "description": "An intelligent lore assistant for Foundry VTT that helps players and GMs with world-building and storytelling using AI",
+    "main": "scripts/main.mjs",
+    "scripts": {
+        "build": "echo 'No build process needed for this module'",
+        "dev": "echo 'Start Foundry VTT and enable the module to test'",
+        "lint": "echo 'No linting configured yet'"
+    },
+    "keywords": [
+        "foundry-vtt",
+        "foundry",
+        "module",
+        "ai",
+        "lore",
+        "assistant",
+        "openai",
+        "worldbuilding",
+        "rpg",
+        "tabletop"
+    ],
+    "author": {
+        "name": "Sgodd",
+        "discord": "sgodd"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sgodd/foundry-vtt-lore-assistant.git"
+    },
+    "bugs": {
+        "url": "https://github.com/sgodd/foundry-vtt-lore-assistant/issues"
+    },
+    "homepage": "https://github.com/sgodd/foundry-vtt-lore-assistant#readme"
+}
